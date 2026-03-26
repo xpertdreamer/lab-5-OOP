@@ -11,6 +11,7 @@ set(SOURCES
   main.cpp)
 
 set(HEADERS
-  cars.hpp)
+  cars.hpp
+  util.hpp)
 
 add_executable(lab_6 ${SOURCES} ${HEADERS})
