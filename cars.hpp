@@ -1,9 +1,14 @@
 #ifndef CARS_H_
 #define CARS_H_
 
+#include <algorithm>
+#include <functional>
 #include <iostream>
+#include <iterator>
 #include <list>
+#include <set>
 #include <string>
+#include <vector>
 
 struct Car {
     std::string brand;
@@ -36,6 +41,32 @@ inline bool display_cars(const std::list<Car> &cars) {
     }
 
     std::cout << "Total: " << cars.size() << "\n";
+    return true;
+}
+
+inline bool remove_by_indicies(std::list<Car> &cars,
+                               const std::vector<int> &indicies) {
+    if (indicies.empty())
+        return false;
+
+    std::set<int> deleteIdxs(indicies.begin(), indicies.end());
+
+    int size = cars.size();
+    for (const auto i : deleteIdxs) {
+        if (i < 0 || i >= size) {
+            std::cout << "Error: Index " << i << " is out-of-bounds\n";
+            return false;
+        }
+    }
+
+    std::vector<int> sorted(deleteIdxs.begin(), deleteIdxs.end());
+    std::sort(sorted.begin(), sorted.end(), std::greater<int>());
+    for (const auto i : sorted) {
+        auto it = cars.begin();
+        std::advance(it, i);
+        cars.erase(it);
+    }
+
     return true;
 }
 
