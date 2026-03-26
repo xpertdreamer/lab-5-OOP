@@ -8,6 +8,7 @@
 #include <list>
 #include <set>
 #include <string>
+#include <utility>
 #include <vector>
 
 struct Car {
@@ -22,6 +23,18 @@ struct Car {
 
     void print() const {
         std::cout << brand << " " << model << " (" << year << ") > " << price;
+    }
+
+    void input_new_data() {
+        std::cout << "Enter new brand: ";
+        getline(std::cin, brand);
+        std::cout << "Enter new model: ";
+        getline(std::cin, model);
+        std::cout << "Enter new year: ";
+        std::cin >> year;
+        std::cout << "Enter new price: ";
+        std::cin >> price;
+        std::cin.ignore();
     }
 };
 
@@ -67,6 +80,64 @@ inline bool remove_by_indicies(std::list<Car> &cars,
         cars.erase(it);
     }
 
+    return true;
+}
+
+inline bool swap_by_indicies(std::list<Car> &cars,
+                             const std::vector<int> &indicies,
+                             const std::vector<Car> &n_cars) {
+    if (indicies.size() != n_cars.size()) {
+        std::cout << "Error: Number of indices and new cars don't match!\n";
+        return false;
+    }
+
+    std::vector<std::pair<int, Car>> repl;
+    for (size_t i = 0; i < indicies.size(); i++) {
+        if (indicies[i] >= 0 && indicies[i] < cars.size())
+            repl.push_back({indicies[i], n_cars[i]});
+        else
+            std::cout << "Warning: Index " << indicies[i]
+                      << " is out of range and will be skipped\n";
+    }
+
+    std::sort(repl.begin(), repl.end(),
+              [](const std::pair<int, Car> &a, const std::pair<int, Car> &b) {
+                  return a.first > b.first;
+              });
+    for (const auto &r : repl) {
+        auto it = cars.begin();
+        std::advance(it, r.first);
+        *it = r.second;
+        std::cout << "Replaced car at index " << r.first << "\n";
+    }
+
+    return true;
+}
+
+inline bool delete_n_after(std::list<Car> &cars, int startIdx, int count) {
+    if (startIdx < 0 || startIdx >= static_cast<int>(cars.size())) {
+        std::cout << "Invalid index! Index must be between 0 and "
+                  << cars.size() - 1 << "\n";
+        return false;
+    }
+
+    auto start = cars.begin();
+    std::advance(start, startIdx + 1);
+    if (start == cars.end()) {
+        std::cout << "No elements after index " << startIdx << "\n";
+        return false;
+    }
+
+    auto end = start;
+    int removed = 0;
+    while (removed < count && end != cars.end()) {
+        end++;
+        removed++;
+    }
+
+    cars.erase(start, end);
+    std::cout << "Removed " << removed << " elements after index " << startIdx
+              << "\n";
     return true;
 }
 
