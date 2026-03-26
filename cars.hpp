@@ -18,7 +18,7 @@ struct Car {
     double price;
 
     Car(const std::string b = "", const std::string m = "", const int y = 0,
-        const int p = 0.0)
+        const double p = 0.0)
         : brand(b), model(m), year(y), price(p) {}
 
     void print() const {
@@ -44,7 +44,7 @@ inline bool display_cars(const std::list<Car> &cars) {
         return false;
     }
 
-    int index = 1;
+    int index = 0;
     auto it = cars.cbegin();
     while (it != cars.cend()) {
         std::cout << index++ << ".";

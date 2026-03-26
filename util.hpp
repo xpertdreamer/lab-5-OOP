@@ -8,7 +8,7 @@
 #include <string>
 #include <vector>
 
-void fill_list(std::list<Car> &cars) {
+inline void fill_list(std::list<Car> &cars) {
     int n;
     std::cin >> n;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -33,13 +33,13 @@ void fill_list(std::list<Car> &cars) {
     }
 }
 
-std::vector<int> input_indicies(int maxIdx) {
+inline std::vector<int> input_indicies(int maxIdx) {
     std::cout << "Enter indicies separated by space > ";
     std::string input;
     std::getline(std::cin, input);
 
     std::vector<int> res;
-    std::stringstream ss;
+    std::stringstream ss(input);
     int idx;
 
     while (ss >> idx) {

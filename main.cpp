@@ -3,7 +3,6 @@
 #include <cstdio>
 #include <cstdlib>
 #include <iostream>
-#include <string>
 #include <vector>
 
 int main() {
@@ -12,15 +11,15 @@ int main() {
 
     std::cout << "Variant 2 (doubly linked list with cars)\n";
 
-    std::cout << "#1 How many cars you want to enter > ";
+    std::cout << "\n#1 How many cars you want to enter > ";
     fill_list(cars);
 
-    std::cout << "#2 View container\n";
+    std::cout << "\n#2 View container\n";
     if (display_cars(cars) == false)
         std::exit(1);
 
-    std::cout << "#3 Modifying the container\n";
-    std::cout << "\nRemove cars at specific indices\n";
+    std::cout << "\n#3 Modifying the container\n";
+    std::cout << "Remove cars at specific indices\n";
     if (cars.empty() == false) {
         std::vector<int> idxs_rem = input_indicies(cars.size());
         if (!idxs_rem.empty()) {
@@ -59,13 +58,13 @@ int main() {
     if (display_cars(cars) == false)
         std::exit(1);
 
-    std::cout << "#5 How many cars you want to enter to second > ";
+    std::cout << "\n#5 How many cars you want to enter to second > ";
     fill_list(cars2);
     std::cout << "Second list: \n";
     if (display_cars(cars2) == false)
         std::exit(1);
 
-    std::cout << "#6 Modify first: delete n after and merge with second\n";
+    std::cout << "\n#6 Modify first: delete n after and merge with second\n";
     int startIdx, count;
     std::cout << "Enter starting index (0-based): ";
     std::cin >> startIdx;
@@ -84,7 +83,7 @@ int main() {
     if (!display_cars(cars))
         std::exit(1);
 
-    std::cout << "#7 View both\n";
+    std::cout << "\n#7 View both\n";
     std::cout << "First container after all modifications:\n";
     if (!display_cars(cars))
         std::exit(1);
