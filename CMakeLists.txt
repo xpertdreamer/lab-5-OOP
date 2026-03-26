@@ -10,6 +10,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(SOURCES
   main.cpp)
 
-set(HEADERS )
+set(HEADERS
+  cars.hpp)
 
 add_executable(lab_6 ${SOURCES} ${HEADERS})
