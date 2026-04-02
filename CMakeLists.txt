@@ -11,6 +11,8 @@ set(SOURCES
   main.cpp)
 
 set(HEADERS
-  array.hpp)
+  array.hpp
+  conversion.hpp
+  person.hpp)
 
-add_executable(lab_4 ${SOURCES} ${HEADERS})
+add_executable(lab_5 ${SOURCES} ${HEADERS})
